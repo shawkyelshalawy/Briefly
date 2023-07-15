@@ -1,0 +1,11 @@
+mode: set
+github.com/shawkyelshalawy/Daily_Brief/handlers/health.go:8.29,9.66 1 1
+github.com/shawkyelshalawy/Daily_Brief/handlers/health.go:9.67,11.3 0 1
+github.com/shawkyelshalawy/Daily_Brief/server/routes.go:5.32,7.2 1 1
+github.com/shawkyelshalawy/Daily_Brief/server/server.go:25.32,40.2 3 1
+github.com/shawkyelshalawy/Daily_Brief/server/server.go:42.32,45.91 3 1
+github.com/shawkyelshalawy/Daily_Brief/server/server.go:48.2,48.12 1 1
+github.com/shawkyelshalawy/Daily_Brief/server/server.go:45.91,47.3 1 0
+github.com/shawkyelshalawy/Daily_Brief/server/server.go:51.31,57.47 4 1
+github.com/shawkyelshalawy/Daily_Brief/server/server.go:61.2,61.12 1 1
+github.com/shawkyelshalawy/Daily_Brief/server/server.go:57.47,59.3 1 0
