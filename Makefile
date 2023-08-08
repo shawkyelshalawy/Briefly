@@ -1,4 +1,4 @@
-.PHONY: cover start test test-integration
+.PHONY: cover start test test-integration build
 
 cover:
 	go tool cover -html=cover.out
@@ -11,3 +11,6 @@ test:
 
 test-integration:
 	go test -coverprofile=cover.out -p 1 ./...
+
+build:
+	docker build -t dailybrief .
