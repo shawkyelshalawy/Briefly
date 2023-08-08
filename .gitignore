@@ -1,3 +1,4 @@
 .idea/
-.env/
-docker-compose.yaml/
+.env
+docker-compose.yaml
+```
