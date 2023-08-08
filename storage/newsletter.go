@@ -2,9 +2,9 @@ package storage
 
 import (
 	"context"
-	"crypto/rand"
 	"fmt"
 	"github.com/shawkyelshalawy/Daily_Brief/model"
+	"math/rand"
 )
 
 func (d *Database) SignupForNewsletter(ctx context.Context, email model.Email) (string, error) {
@@ -21,6 +21,7 @@ func (d *Database) SignupForNewsletter(ctx context.Context, email model.Email) (
 	_, err = d.DB.ExecContext(ctx, query, email, token)
 	return token, err
 }
+
 func createSecret() (string, error) {
 	secret := make([]byte, 32)
 	if _, err := rand.Read(secret); err != nil {
