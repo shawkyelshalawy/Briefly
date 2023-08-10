@@ -3,6 +3,7 @@ package storage
 import (
 	"context"
 	"fmt"
+	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/jmoiron/sqlx"
 	"go.uber.org/zap"
 	"time"

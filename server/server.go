@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/shawkyelshalawy/Daily_Brief/storage"
 	"net"
 	"net/http"
 	"strconv"
@@ -14,16 +15,18 @@ import (
 )
 
 type Server struct {
-	address string
-	log     *zap.Logger
-	mux     chi.Router
-	server  *http.Server
+	address  string
+	database *storage.Database
+	log      *zap.Logger
+	mux      chi.Router
+	server   *http.Server
 }
 
 type Options struct {
-	Host string
-	Log  *zap.Logger
-	Port int
+	Database *storage.Database
+	Host     string
+	Log      *zap.Logger
+	Port     int
 }
 
 func New(opts Options) *Server {
@@ -34,9 +37,10 @@ func New(opts Options) *Server {
 	address := net.JoinHostPort(opts.Host, strconv.Itoa(opts.Port))
 	mux := chi.NewMux()
 	return &Server{
-		address: address,
-		log:     opts.Log,
-		mux:     mux,
+		address:  address,
+		log:      opts.Log,
+		database: opts.Database,
+		mux:      mux,
 		server: &http.Server{
 			Addr:              address,
 			Handler:           mux,
@@ -49,6 +53,9 @@ func New(opts Options) *Server {
 }
 
 func (s *Server) Start() error {
+	if err := s.database.Connect(); err != nil {
+		return fmt.Errorf("error connecting to database: %w", err)
+	}
 	s.setupRoutes()
 	s.log.Info("Starting", zap.String("address", s.address))
 	if err := s.server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
