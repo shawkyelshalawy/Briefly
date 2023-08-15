@@ -3,15 +3,18 @@ package integrationtest
 import (
 	"github.com/shawkyelshalawy/Daily_Brief/server"
 	"net/http"
+	"testing"
 	"time"
 )
 
 func CreateServer() func() {
 	db, cleanupDB := CreateDatabase()
+	queue, cleanupQueue := CreateQueue()
 	s := server.New(server.Options{
 		Host:     "localhost",
 		Port:     8081,
 		Database: db,
+		Queue:    queue,
 	})
 
 	go func() {
@@ -33,5 +36,14 @@ func CreateServer() func() {
 			panic(err)
 		}
 		cleanupDB()
+		cleanupQueue()
+
+	}
+}
+
+// SkipIfShort skips t if the "-short" flag is passed to "go test".
+func SkipIfShort(t *testing.T) {
+	if testing.Short() {
+		t.SkipNow()
 	}
 }
