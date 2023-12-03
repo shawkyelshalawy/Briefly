@@ -1,8 +1,15 @@
+// Package main is the entry point to the server. It reads configuration, sets up logging and error handling,
+// handles signals from the OS, and starts and stops the server.
 package main
 
 import (
 	"context"
 	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/sqs"
@@ -13,10 +20,6 @@ import (
 	"github.com/shawkyelshalawy/Daily_Brief/storage"
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
 )
 
 var release string

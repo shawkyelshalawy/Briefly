@@ -3,11 +3,12 @@ package handlers_test
 import (
 	"context"
 	"errors"
-	"github.com/matryer/is"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/matryer/is"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/shawkyelshalawy/Daily_Brief/handlers"
